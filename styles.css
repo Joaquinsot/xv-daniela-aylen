@@ -851,15 +851,7 @@ body:not(.is-locked) .music-fab {
   width: 100%;
   height: auto;
   object-fit: contain;
-  mix-blend-mode: multiply;
-  -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 4%, #000 96%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 4%, #000 96%, transparent 100%);
-  mask-composite: intersect;
+  filter: drop-shadow(0 10px 22px rgba(154, 108, 72, 0.14));
   animation: silhouetteFloat 7s ease-in-out infinite;
   transform-origin: center bottom;
 }
