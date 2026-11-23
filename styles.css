@@ -4,12 +4,12 @@
    ========================================================================== */
 
 :root {
-  /* Lighter, airy porcelain-blush pink palette */
-  --blush-50: #fffdfe;
-  --blush-100: #fff7fa;
-  --blush-200: #fdeef4;
-  --blush-300: #fae1eb;
-  --blush-400: #f5cddc;
+  /* Soft pastel blush pink palette (light & luminous, clearly pink) */
+  --blush-50: #fff6f9;
+  --blush-100: #fdecf2;
+  --blush-200: #fbe0ea;
+  --blush-300: #f6cee0;
+  --blush-400: #f0bdd3;
   --rose-vivid: #d95b84;
 
   /* Botanical Sage & Eucalyptus Green (harmonizes with light pink & gold) */
@@ -65,7 +65,7 @@ html {
 body {
   font-family: var(--font-serif);
   color: var(--ink-primary);
-  background: linear-gradient(165deg, #fffbfe 0%, #fef1f6 44%, #f4f9f5 76%, #fff8fb 100%);
+  background: linear-gradient(165deg, #fdeef4 0%, #fce1ec 46%, #f5ecee 78%, #fce7f0 100%);
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
@@ -103,18 +103,18 @@ button {
   pointer-events: none;
   overflow: hidden;
   background:
-    radial-gradient(circle at 14% 16%, rgba(252, 224, 236, 0.56) 0%, transparent 46%),
-    radial-gradient(circle at 86% 22%, rgba(206, 229, 211, 0.44) 0%, transparent 45%),
-    radial-gradient(circle at 16% 76%, rgba(208, 230, 213, 0.42) 0%, transparent 46%),
-    radial-gradient(circle at 85% 84%, rgba(252, 222, 234, 0.52) 0%, transparent 46%),
-    linear-gradient(180deg, #fffcfe 0%, #fef3f7 48%, #f7fbf8 100%);
+    radial-gradient(circle at 14% 16%, rgba(248, 198, 218, 0.68) 0%, transparent 48%),
+    radial-gradient(circle at 86% 22%, rgba(196, 224, 202, 0.42) 0%, transparent 45%),
+    radial-gradient(circle at 16% 76%, rgba(198, 225, 204, 0.38) 0%, transparent 46%),
+    radial-gradient(circle at 85% 84%, rgba(248, 196, 216, 0.64) 0%, transparent 48%),
+    linear-gradient(180deg, #fdefF4 0%, #fce2ec 50%, #f9e8ef 100%);
 }
 
 .wc-blob {
   position: absolute;
   border-radius: 50%;
   filter: blur(60px);
-  opacity: 0.52;
+  opacity: 0.56;
   will-change: transform;
 }
 
@@ -123,7 +123,7 @@ button {
   height: 55vmax;
   top: -15vmax;
   left: -12vmax;
-  background: radial-gradient(circle, rgba(252, 218, 232, 0.65), rgba(255, 245, 249, 0));
+  background: radial-gradient(circle, rgba(247, 192, 214, 0.72), rgba(253, 232, 240, 0));
   animation: blobDrift 18s ease-in-out infinite alternate;
 }
 
@@ -132,7 +132,7 @@ button {
   height: 48vmax;
   top: 22vh;
   right: -14vmax;
-  background: radial-gradient(circle, rgba(188, 219, 195, 0.52), rgba(246, 251, 247, 0));
+  background: radial-gradient(circle, rgba(182, 216, 190, 0.48), rgba(246, 251, 247, 0));
   animation: blobDrift 22s ease-in-out infinite alternate-reverse;
 }
 
@@ -141,7 +141,7 @@ button {
   height: 52vmax;
   bottom: -14vmax;
   left: -10vmax;
-  background: radial-gradient(circle, rgba(196, 224, 202, 0.48), rgba(255, 248, 250, 0));
+  background: radial-gradient(circle, rgba(248, 198, 218, 0.58), rgba(255, 240, 246, 0));
   animation: blobDrift 20s ease-in-out infinite alternate;
 }
 
@@ -150,7 +150,7 @@ button {
   height: 40vmax;
   bottom: 8vh;
   right: 6vw;
-  background: radial-gradient(circle, rgba(252, 225, 236, 0.52), rgba(255, 250, 252, 0));
+  background: radial-gradient(circle, rgba(248, 202, 220, 0.62), rgba(255, 244, 248, 0));
   animation: blobDrift 16s ease-in-out infinite alternate-reverse;
 }
 
@@ -436,7 +436,7 @@ body:not(.is-locked) .music-fab {
   bottom: 0;
   width: 50.5%;
   background:
-    radial-gradient(circle at 50% 35%, rgba(255, 253, 254, 0.98), rgba(253, 240, 246, 0.97) 58%, rgba(235, 245, 237, 0.97) 100%);
+    radial-gradient(circle at 50% 35%, rgba(254, 242, 247, 0.98), rgba(251, 224, 235, 0.97) 58%, rgba(235, 244, 237, 0.97) 100%);
   transition: transform 1.15s cubic-bezier(0.76, 0, 0.24, 1);
   z-index: 1;
 }
@@ -661,11 +661,11 @@ body:not(.is-locked) .music-fab {
 .invitation-frame {
   position: relative;
   background:
-    radial-gradient(circle at 14% 7%, rgba(252, 226, 237, 0.42), transparent 34%),
-    radial-gradient(circle at 88% 18%, rgba(206, 229, 211, 0.34), transparent 34%),
-    radial-gradient(circle at 12% 52%, rgba(208, 230, 213, 0.34), transparent 36%),
-    radial-gradient(circle at 86% 84%, rgba(252, 224, 236, 0.4), transparent 38%),
-    linear-gradient(180deg, rgba(255, 253, 254, 0.96) 0%, rgba(254, 245, 249, 0.94) 50%, rgba(249, 253, 250, 0.96) 100%);
+    radial-gradient(circle at 14% 7%, rgba(249, 204, 222, 0.5), transparent 36%),
+    radial-gradient(circle at 88% 18%, rgba(196, 224, 202, 0.34), transparent 34%),
+    radial-gradient(circle at 12% 52%, rgba(198, 225, 204, 0.32), transparent 36%),
+    radial-gradient(circle at 86% 84%, rgba(249, 202, 220, 0.48), transparent 38%),
+    linear-gradient(180deg, rgba(254, 242, 247, 0.96) 0%, rgba(252, 232, 241, 0.94) 50%, rgba(251, 238, 244, 0.96) 100%);
   border-radius: 28px;
   box-shadow: var(--shadow-soft), 0 0 0 1px rgba(255, 255, 255, 0.85) inset;
   overflow: hidden;
@@ -1919,6 +1919,66 @@ body:not(.is-locked) .music-fab {
   font-style: italic;
   font-size: 1rem;
   color: var(--sage-main);
+}
+
+/* ==========================================================================
+   5.7. LLUVIA DE SOBRES / REGALOS EN EFECTIVO
+   ========================================================================== */
+.gifts-section {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: clamp(20px, 4.5vw, 38px) clamp(18px, 5vw, 44px);
+}
+
+.gifts-card {
+  max-width: 530px;
+  margin: 0 auto;
+  padding: clamp(28px, 5.5vw, 40px) clamp(20px, 5vw, 36px);
+  border-radius: 26px;
+  background: linear-gradient(160deg, rgba(255, 250, 252, 0.94), rgba(242, 248, 243, 0.84) 55%, rgba(253, 234, 242, 0.86));
+  border: 1.4px solid var(--border-gold);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.gifts-icon-medallion {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sage-deep);
+  background: radial-gradient(circle at 30% 30%, #ffffff, #ebf5ed 62%, #fce4ee);
+  border: 1.4px solid var(--border-gold-strong);
+  box-shadow: 0 10px 24px rgba(92, 131, 103, 0.15), inset 0 0 0 4px rgba(255, 255, 255, 0.85);
+}
+
+.gifts-title {
+  font-family: var(--font-script);
+  font-size: clamp(2.35rem, 7.8vw, 3.15rem);
+  font-weight: 400;
+  color: var(--gold-dark);
+  line-height: 1.12;
+}
+
+.gifts-message {
+  font-family: var(--font-serif);
+  font-size: clamp(1.12rem, 3.7vw, 1.26rem);
+  line-height: 1.65;
+  color: var(--ink-primary);
+  margin-bottom: 12px;
+}
+
+.gifts-thanks {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.06rem, 3.5vw, 1.18rem);
+  color: var(--sage-deep);
 }
 
 /* ==========================================================================
