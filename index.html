@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Daniela Aylen Lara Quistiano — Mis XV Años</title>
   <meta name="description" content="Invitación digital a los XV años de Daniela Aylen Lara Quistiano — 19 de diciembre de 2026." />
-  <meta name="theme-color" content="#FCE3E9" />
+  <meta name="theme-color" content="#FFF4F8" />
 
   <!-- Google Fonts: Romantic calligraphy & regal editorial serif -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,31 +14,31 @@
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 <body class="is-locked">
-  <!-- Ambient Watercolor Background & Interactive Particle Canvas -->
+  <!-- Ambient Very-Light Blush & Botanical Sage Watercolor Backdrop -->
   <div class="watercolor-backdrop" aria-hidden="true">
     <div class="wc-blob wc-blob-1"></div>
     <div class="wc-blob wc-blob-2"></div>
     <div class="wc-blob wc-blob-3"></div>
     <div class="wc-blob wc-blob-4"></div>
   </div>
-  <canvas id="sparkle-canvas" aria-hidden="true"></canvas>
+  <canvas id="butterfly-canvas" aria-hidden="true"></canvas>
 
   <!-- Scroll Progress Hairline -->
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <!-- Background Song -->
-  <audio id="bgMusic" src="assets/cancion.mp3?v=4" loop preload="auto"></audio>
+  <!-- Background Song (manual play only — never autoplays) -->
+  <audio id="bgMusic" src="assets/cancion.mp3?v=6" loop preload="metadata"></audio>
 
-  <!-- Floating Music Control -->
+  <!-- Floating Quick Music Control (synced with main player) -->
   <button
     class="music-fab"
     id="musicToggle"
     type="button"
-    aria-label="Activar o pausar música"
-    title="See You Again — Música"
+    aria-label="Reproducir o pausar música"
+    title="See You Again — Reproducir / Pausar"
   >
     <span class="music-fab-ring"></span>
     <span class="music-bars" aria-hidden="true">
@@ -46,16 +46,13 @@
       <span></span>
       <span></span>
     </span>
-    <svg class="icon-music-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M9 18V5l12-2v13"></path>
-      <circle cx="6" cy="18" r="3"></circle>
-      <circle cx="18" cy="16" r="3"></circle>
-      <line x1="2" y1="2" x2="22" y2="22"></line>
+    <svg class="icon-music-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polygon points="8 5 19 12 8 19 8 5" fill="currentColor"></polygon>
     </svg>
   </button>
 
   <!-- =========================================================
-       INTRO ENVELOPE / ROYAL SEAL OVERLAY
+       INTRO ENVELOPE / ROYAL SEAL OVERLAY (SIN APELLIDOS)
        ========================================================= -->
   <div class="intro-overlay" id="introOverlay" role="dialog" aria-modal="true" aria-label="Portada de invitación de Daniela Aylen">
     <div class="intro-curtain intro-curtain-left" aria-hidden="true"></div>
@@ -63,8 +60,11 @@
 
     <div class="intro-card">
       <div class="intro-frame-inner">
-        <img src="assets/floral-corner.png?v=5" alt="" class="floral-corner floral-tl intro-floral" aria-hidden="true" />
-        <img src="assets/floral-corner.png?v=5" alt="" class="floral-corner floral-br intro-floral" aria-hidden="true" />
+        <!-- Lush floral frame on all 4 corners -->
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-corner floral-tl intro-floral" aria-hidden="true" />
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-corner floral-tr intro-floral" aria-hidden="true" />
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-corner floral-bl intro-floral" aria-hidden="true" />
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-corner floral-br intro-floral" aria-hidden="true" />
 
         <!-- Ornate Crown SVG -->
         <div class="intro-crown-wrap">
@@ -82,22 +82,16 @@
                 <stop offset="100%" stop-color="#E4C183" />
               </linearGradient>
             </defs>
-            <!-- Tiara base arch -->
             <path d="M22 92 C68 67, 172 67, 218 92" stroke="url(#goldCrownGrad)" stroke-width="3.2" stroke-linecap="round" />
             <path d="M26 86 C72 62, 168 62, 214 86" stroke="url(#goldCrownGrad)" stroke-width="1.5" stroke-linecap="round" />
-            <!-- Center spire & scrolls -->
             <path d="M120 14 C106 30, 98 46, 106 62 C112 72, 128 72, 134 62 C142 46, 134 30, 120 14 Z" stroke="url(#goldCrownGrad)" stroke-width="2.2" fill="rgba(255,248,240,0.45)" />
             <path d="M120 26 L128 43 L120 58 L112 43 Z" fill="url(#gemGrad)" stroke="url(#goldCrownGrad)" stroke-width="1.3" />
-            <!-- Inner left & right filigree -->
             <path d="M104 64 C88 54, 78 36, 86 24 C95 36, 98 50, 92 66" stroke="url(#goldCrownGrad)" stroke-width="2" fill="none" stroke-linecap="round" />
             <path d="M136 64 C152 54, 162 36, 154 24 C145 36, 142 50, 148 66" stroke="url(#goldCrownGrad)" stroke-width="2" fill="none" stroke-linecap="round" />
-            <!-- Mid left & right curls -->
             <path d="M84 68 C66 58, 52 44, 58 34 C69 44, 74 56, 66 73" stroke="url(#goldCrownGrad)" stroke-width="1.9" fill="none" stroke-linecap="round" />
             <path d="M156 68 C174 58, 188 44, 182 34 C171 44, 166 56, 174 73" stroke="url(#goldCrownGrad)" stroke-width="1.9" fill="none" stroke-linecap="round" />
-            <!-- Outer left & right swirls -->
             <path d="M58 74 C42 66, 32 56, 35 49 C45 56, 50 66, 44 80" stroke="url(#goldCrownGrad)" stroke-width="1.7" fill="none" stroke-linecap="round" />
             <path d="M182 74 C198 66, 208 56, 205 49 C195 56, 190 66, 196 80" stroke="url(#goldCrownGrad)" stroke-width="1.7" fill="none" stroke-linecap="round" />
-            <!-- Pearls & crystals -->
             <circle cx="120" cy="10" r="3.5" fill="url(#gemGrad)" stroke="url(#goldCrownGrad)" stroke-width="1.2" />
             <circle cx="86" cy="22" r="2.8" fill="url(#gemGrad)" stroke="url(#goldCrownGrad)" stroke-width="1.1" />
             <circle cx="154" cy="22" r="2.8" fill="url(#gemGrad)" stroke="url(#goldCrownGrad)" stroke-width="1.1" />
@@ -105,20 +99,11 @@
             <circle cx="182" cy="33" r="2.4" fill="url(#gemGrad)" stroke="url(#goldCrownGrad)" stroke-width="1" />
             <circle cx="35" cy="48" r="2" fill="url(#gemGrad)" stroke="url(#goldCrownGrad)" stroke-width="1" />
             <circle cx="205" cy="48" r="2" fill="url(#gemGrad)" stroke="url(#goldCrownGrad)" stroke-width="1" />
-            <!-- Tiny base pearls -->
-            <circle cx="64" cy="79" r="1.6" fill="#F8E7C1" />
-            <circle cx="84" cy="74" r="1.8" fill="#F8E7C1" />
-            <circle cx="102" cy="71" r="2" fill="#F8E7C1" />
-            <circle cx="120" cy="70" r="2.3" fill="#FFFDF8" />
-            <circle cx="138" cy="71" r="2" fill="#F8E7C1" />
-            <circle cx="156" cy="74" r="1.8" fill="#F8E7C1" />
-            <circle cx="176" cy="79" r="1.6" fill="#F8E7C1" />
           </svg>
         </div>
 
         <p class="intro-eyebrow">Tienes una invitación especial</p>
         <h2 class="intro-name gold-shimmer">Daniela Aylen</h2>
-        <p class="intro-lastname">Lara Quistiano</p>
         <p class="intro-subtitle">Mis <span>XV</span> años</p>
 
         <!-- Glowing Wax Seal Button -->
@@ -132,6 +117,9 @@
         </button>
 
         <p class="intro-date-preview">19 de diciembre de 2026</p>
+
+        <!-- Centered colorful rose bouquet at bottom of intro -->
+        <img src="assets/floral-center.png?v=6" alt="" class="floral-centerpiece intro-center-floral" aria-hidden="true" />
       </div>
     </div>
   </div>
@@ -141,36 +129,52 @@
        ========================================================= -->
   <main class="invitation-shell" id="invitationMain">
     <div class="invitation-frame">
-      <!-- Outer decorative corner lines -->
+      <!-- Outer Gold & Inner Botanical Sage Double Frame -->
       <div class="frame-border-outer" aria-hidden="true"></div>
       <div class="frame-border-inner" aria-hidden="true"></div>
 
+      <!-- Lush Floral Garlands Framing the Entire Invitation Perimeter -->
+      <div class="frame-florals-perimeter" aria-hidden="true">
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-corner floral-tl frame-corner-lg" />
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-corner floral-tr frame-corner-lg" />
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-corner floral-bl frame-corner-lg" />
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-corner floral-br frame-corner-lg" />
+        <!-- Mid-perimeter side floral accents along the long borders -->
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-side floral-side-l1" />
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-side floral-side-r1" />
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-side floral-side-l2" />
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-side floral-side-r2" />
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-side floral-side-l3" />
+        <img src="assets/floral-corner.png?v=6" alt="" class="floral-side floral-side-r3" />
+      </div>
+
       <!-- =======================================================
-           1. HERO / PORTADA WITH QUINCEAÑERA SILHOUETTE & CROWN
+           1. HERO / PORTADA WITH UNFRAMED FULL SILHOUETTE & CROWN
            ======================================================= -->
       <section class="hero-section" id="inicio">
-        <!-- Floral corners echoing the original invitation -->
-        <img src="assets/floral-corner.png?v=5" alt="" class="floral-corner floral-tl hero-floral-tl" aria-hidden="true" />
-        <img src="assets/floral-corner.png?v=5" alt="" class="floral-corner floral-br hero-floral-br" aria-hidden="true" />
+        <!-- Floating Animated Butterflies (replacing golden stars) -->
+        <div class="hero-butterflies" aria-hidden="true">
+          <span class="butterfly-float b1"></span>
+          <span class="butterfly-float b2"></span>
+          <span class="butterfly-float b3"></span>
+          <span class="butterfly-float b4"></span>
+          <span class="butterfly-float b5"></span>
+          <span class="butterfly-float b6"></span>
+        </div>
 
-        <!-- Floating decorative SVG 4-point sparkles -->
-        <div class="hero-sparkles" aria-hidden="true">
-          <span class="star-4 s1"></span>
-          <span class="star-4 s2"></span>
-          <span class="star-4 s3"></span>
-          <span class="star-4 s4"></span>
-          <span class="star-4 s5"></span>
-          <span class="star-4 s6"></span>
+        <!-- Centered Prominent Vibrant Floral Arch at Top -->
+        <div class="floral-center-wrap hero-top-floral reveal" data-delay="20" aria-hidden="true">
+          <img src="assets/floral-center.png?v=6" alt="" class="floral-centerpiece floral-center-lg" />
         </div>
 
         <!-- Full Unframed Quinceañera Silhouette with Crown -->
-        <div class="silhouette-stage reveal" data-delay="80" id="silhouetteStage">
+        <div class="silhouette-stage reveal" data-delay="100" id="silhouetteStage">
           <div class="silhouette-halo" aria-hidden="true"></div>
           <div class="silhouette-orbit" aria-hidden="true">
-            <span class="orbit-sparkle os-1"></span>
-            <span class="orbit-sparkle os-2"></span>
-            <span class="orbit-sparkle os-3"></span>
-            <span class="orbit-sparkle os-4"></span>
+            <span class="orbit-butterfly ob-1"></span>
+            <span class="orbit-butterfly ob-2"></span>
+            <span class="orbit-butterfly ob-3"></span>
+            <span class="orbit-butterfly ob-4"></span>
           </div>
           <img
             src="assets/quinceanera-silhouette.jpg"
@@ -180,16 +184,16 @@
           />
         </div>
 
-        <!-- Heart Divider -->
-        <div class="heart-divider reveal" data-delay="220" aria-hidden="true">
+        <!-- Heart & Botanical Divider -->
+        <div class="heart-divider reveal" data-delay="200" aria-hidden="true">
           <span class="divider-line"></span>
           <span class="diamond-heart"></span>
           <span class="divider-line"></span>
         </div>
 
         <!-- Name & Title -->
-        <h1 class="hero-name gold-shimmer reveal" data-delay="280">Daniela Aylen</h1>
-        <p class="hero-lastname reveal" data-delay="310">Lara Quistiano</p>
+        <h1 class="hero-name gold-shimmer reveal" data-delay="260">Daniela Aylen</h1>
+        <p class="hero-lastname reveal" data-delay="300">Lara Quistiano</p>
 
         <div class="heart-divider heart-divider-sm reveal" data-delay="340" aria-hidden="true">
           <span class="divider-line"></span>
@@ -204,8 +208,8 @@
         </p>
 
         <!-- Date Row -->
-        <div class="hero-date-pill reveal" data-delay="480">
-          <svg class="date-calendar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <div class="hero-date-pill reveal" data-delay="460">
+          <svg class="date-calendar-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="4.5" width="18" height="16.5" rx="2.5"></rect>
             <line x1="16" y1="2.5" x2="16" y2="6.5"></line>
             <line x1="8" y1="2.5" x2="8" y2="6.5"></line>
@@ -221,10 +225,10 @@
         </div>
 
         <!-- Gentle Scroll Cue -->
-        <a href="#mensaje" class="scroll-cue reveal" data-delay="560" aria-label="Desliza para descubrir los detalles">
+        <a href="#musica" class="scroll-cue reveal" data-delay="520" aria-label="Desliza para descubrir los detalles">
           <span class="scroll-cue-text">Desliza</span>
           <span class="scroll-cue-arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </span>
@@ -232,40 +236,91 @@
       </section>
 
       <!-- =======================================================
+           1.5. INTERACTIVE MUSIC PLAYER (USER CHOOSES PLAY)
+           ======================================================= -->
+      <section class="music-section" id="musica">
+        <div class="music-player-card reveal">
+          <div class="music-player-header">
+            <span class="music-badge">♪ Nuestra Canción</span>
+            <p class="music-prompt" id="musicPrompt">Dale Play para escuchar mientras lees la invitación</p>
+          </div>
+
+          <div class="music-player-body">
+            <button
+              class="player-play-btn"
+              id="playerPlayBtn"
+              type="button"
+              aria-label="Reproducir See You Again"
+            >
+              <span class="player-pulse-ring" aria-hidden="true"></span>
+              <svg class="icon-play" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <polygon points="7 4.5 20 12 7 19.5 7 4.5"></polygon>
+              </svg>
+              <svg class="icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <rect x="6" y="5" width="4.2" height="14" rx="1.2"></rect>
+                <rect x="13.8" y="5" width="4.2" height="14" rx="1.2"></rect>
+              </svg>
+            </button>
+
+            <div class="player-track-info">
+              <div class="player-meta">
+                <h3 class="player-title">See You Again</h3>
+                <p class="player-artist">Tyler, The Creator &amp; Kali Uchis</p>
+              </div>
+
+              <div class="player-progress-row">
+                <span class="player-time" id="playerCurrentTime">0:00</span>
+                <input
+                  type="range"
+                  class="player-seek"
+                  id="playerSeek"
+                  min="0"
+                  max="100"
+                  value="0"
+                  step="0.1"
+                  aria-label="Progreso de la canción"
+                />
+                <span class="player-time" id="playerDuration">3:02</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
            2. POETIC PHRASE & SCALLOPED RIBBON BANNER
            ======================================================= -->
       <section class="message-section" id="mensaje">
-        <div class="heart-divider reveal" aria-hidden="true">
-          <span class="divider-line"></span>
-          <span class="diamond-heart"></span>
-          <span class="divider-line"></span>
+        <div class="floral-center-wrap reveal" aria-hidden="true">
+          <img src="assets/floral-center.png?v=6" alt="" class="floral-centerpiece" />
         </div>
 
         <p class="poetic-quote reveal" data-delay="80">
           Una noche especial<br />está por llegar.
         </p>
 
-        <!-- Scalloped Blush & Gold Ribbon matching the original card -->
-        <div class="ribbon-banner-wrap reveal" data-delay="180">
+        <!-- Scalloped Light-Blush, Sage & Gold Ribbon -->
+        <div class="ribbon-banner-wrap reveal" data-delay="160">
           <div class="ribbon-banner">
             <span class="ribbon-shimmer" aria-hidden="true"></span>
             <span class="ribbon-text">¡Te esperamos!</span>
           </div>
         </div>
 
-        <p class="poetic-subtext reveal" data-delay="260">
-          Con inmensa ilusión deseo compartir contigo el comienzo de una nueva etapa llena de sueños, magia y alegría.
-        </p>
+        <blockquote class="special-quote-card reveal" data-delay="240">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <p class="poetic-subtext">
+            Hay momentos inolvidables que se atesoran en el corazón para siempre, por esa razón, quiero que celebres conmigo éste día tan especial.
+          </p>
+        </blockquote>
       </section>
 
       <!-- =======================================================
            2.5. PAPÁS Y PADRINOS (HONOR ROLL)
            ======================================================= -->
       <section class="family-section" id="familia">
-        <div class="heart-divider reveal" aria-hidden="true">
-          <span class="divider-line"></span>
-          <span class="outline-heart"></span>
-          <span class="divider-line"></span>
+        <div class="floral-center-wrap reveal" aria-hidden="true">
+          <img src="assets/floral-center.png?v=6" alt="" class="floral-centerpiece floral-center-md" />
         </div>
 
         <div class="section-heading reveal" data-delay="60">
@@ -275,7 +330,7 @@
 
         <div class="family-grid">
           <article class="family-card reveal" data-delay="120">
-            <div class="family-ornament" aria-hidden="true">✦</div>
+            <div class="family-ornament" aria-hidden="true">❀</div>
             <h3 class="family-role">Mis Papás</h3>
             <div class="event-mini-divider" aria-hidden="true"><span></span></div>
             <p class="family-person">Sergio Lara Muñoz</p>
@@ -284,7 +339,7 @@
           </article>
 
           <article class="family-card reveal" data-delay="220">
-            <div class="family-ornament" aria-hidden="true">✦</div>
+            <div class="family-ornament" aria-hidden="true">❀</div>
             <h3 class="family-role">Mis Padrinos</h3>
             <div class="event-mini-divider" aria-hidden="true"><span></span></div>
             <p class="family-person">Geovany Lara Flores</p>
@@ -337,10 +392,8 @@
            4. EVENT DETAILS — MISA & RECEPCIÓN
            ======================================================= -->
       <section class="events-section" id="detalles">
-        <div class="heart-divider reveal" aria-hidden="true">
-          <span class="divider-line"></span>
-          <span class="outline-heart"></span>
-          <span class="divider-line"></span>
+        <div class="floral-center-wrap reveal" aria-hidden="true">
+          <img src="assets/floral-center.png?v=6" alt="" class="floral-centerpiece" />
         </div>
 
         <div class="section-heading reveal" data-delay="60">
@@ -353,16 +406,15 @@
           <article class="event-card tilt-card reveal" data-delay="120">
             <div class="event-card-shine" aria-hidden="true"></div>
             <div class="event-icon-medallion">
-              <!-- Ornate Church SVG matching the reference card -->
-              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <svg width="44" height="44" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M32 6V15M28.5 9.5H35.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
-                <path d="M24 25L32 15L40 25H24Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="rgba(212,175,106,0.16)" />
-                <rect x="24" y="25" width="16" height="11" stroke="currentColor" stroke-width="1.9" fill="rgba(255,248,244,0.65)" />
+                <path d="M24 25L32 15L40 25H24Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="rgba(122,163,132,0.18)" />
+                <rect x="24" y="25" width="16" height="11" stroke="currentColor" stroke-width="1.9" fill="rgba(255,252,253,0.75)" />
                 <circle cx="32" cy="30.5" r="2.2" stroke="currentColor" stroke-width="1.6" />
-                <path d="M11 40L24 32V56H11V40Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" fill="rgba(255,245,248,0.6)" />
-                <path d="M53 40L40 32V56H53V40Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" fill="rgba(255,245,248,0.6)" />
-                <rect x="24" y="36" width="16" height="20" stroke="currentColor" stroke-width="1.9" fill="rgba(255,250,247,0.8)" />
-                <path d="M28.5 56V46.5C28.5 44.5 30 43 32 43C34 43 35.5 44.5 35.5 46.5V56" stroke="currentColor" stroke-width="1.9" fill="rgba(182,139,76,0.22)" />
+                <path d="M11 40L24 32V56H11V40Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" fill="rgba(255,248,250,0.68)" />
+                <path d="M53 40L40 32V56H53V40Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" fill="rgba(255,248,250,0.68)" />
+                <rect x="24" y="36" width="16" height="20" stroke="currentColor" stroke-width="1.9" fill="rgba(255,252,253,0.85)" />
+                <path d="M28.5 56V46.5C28.5 44.5 30 43 32 43C34 43 35.5 44.5 35.5 46.5V56" stroke="currentColor" stroke-width="1.9" fill="rgba(194,149,78,0.24)" />
                 <rect x="15.5" y="44" width="4" height="6" rx="2" stroke="currentColor" stroke-width="1.5" />
                 <rect x="44.5" y="44" width="4" height="6" rx="2" stroke="currentColor" stroke-width="1.5" />
                 <line x1="7" y1="56" x2="57" y2="56" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -381,7 +433,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
@@ -393,20 +445,16 @@
           <article class="event-card tilt-card reveal" data-delay="220">
             <div class="event-card-shine" aria-hidden="true"></div>
             <div class="event-icon-medallion">
-              <!-- Clinking Champagne Flutes SVG matching the reference card -->
-              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <!-- Sparkle above glasses -->
+              <svg width="44" height="44" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M32 9L33.2 13L37 14.2L33.2 15.4L32 19.2L30.8 15.4L27 14.2L30.8 13L32 9Z" fill="currentColor" />
-                <!-- Left flute -->
                 <g transform="rotate(-14 25 38)">
-                  <path d="M18 18H29L27.5 34C27.2 37 25.4 39 23.5 39C21.6 39 19.8 37 19.5 34L18 18Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" fill="rgba(212,175,106,0.18)" />
+                  <path d="M18 18H29L27.5 34C27.2 37 25.4 39 23.5 39C21.6 39 19.8 37 19.5 34L18 18Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" fill="rgba(122,163,132,0.18)" />
                   <path d="M19 26.5H28" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 2" />
                   <line x1="23.5" y1="39" x2="23.5" y2="54" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
                   <line x1="18.5" y1="54" x2="28.5" y2="54" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 </g>
-                <!-- Right flute -->
                 <g transform="rotate(14 39 38)">
-                  <path d="M35 18H46L44.5 34C44.2 37 42.4 39 40.5 39C38.6 39 36.8 37 36.5 34L35 18Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" fill="rgba(212,175,106,0.18)" />
+                  <path d="M35 18H46L44.5 34C44.2 37 42.4 39 40.5 39C38.6 39 36.8 37 36.5 34L35 18Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" fill="rgba(194,149,78,0.2)" />
                   <path d="M36 26.5H45" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 2" />
                   <line x1="40.5" y1="39" x2="40.5" y2="54" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
                   <line x1="35.5" y1="54" x2="45.5" y2="54" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -426,7 +474,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
@@ -554,13 +602,64 @@
       </section>
 
       <!-- =======================================================
+           5.5. CÓDIGO DE VESTIMENTA (FORMAL — EVITAR BEIGE, DORADO)
+           ======================================================= -->
+      <section class="dresscode-section" id="vestimenta">
+        <div class="floral-center-wrap reveal" aria-hidden="true">
+          <img src="assets/floral-center.png?v=6" alt="" class="floral-centerpiece floral-center-md" />
+        </div>
+
+        <div class="dresscode-card reveal" data-delay="100">
+          <div class="dresscode-icon-medallion" aria-hidden="true">
+            <svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Suit / Bowtie (left) & Gala Dress (right) -->
+              <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Tuxedo jacket -->
+                <path d="M16 18L22 15L28 18L26 27L22 23L18 27L16 18Z" fill="rgba(111,147,120,0.16)" />
+                <path d="M14 21L10 34L14 36L15 51H29L30 36L34 34L30 21" />
+                <path d="M20.5 20.5L22 22L23.5 20.5" />
+                <line x1="22" y1="27" x2="22" y2="51" stroke-dasharray="2 3" />
+                <!-- Formal gown -->
+                <path d="M40 16L43 21L46 16" />
+                <path d="M39 17L38 27L48 27L47 17" fill="rgba(229,115,152,0.14)" />
+                <path d="M38 27C35 35 32 44 31 51H55C54 44 51 35 48 27H38Z" fill="rgba(212,175,106,0.16)" />
+              </g>
+            </svg>
+          </div>
+
+          <span class="section-kicker">Código de Vestimenta</span>
+          <h2 class="dresscode-title">Formal</h2>
+
+          <div class="event-mini-divider" aria-hidden="true"><span></span></div>
+
+          <p class="dresscode-note">
+            Te pedimos amablemente <strong>evitar</strong> los siguientes colores:
+          </p>
+
+          <div class="avoid-colors" aria-label="Colores a evitar: Beige y Dorado">
+            <div class="color-chip">
+              <span class="color-dot dot-beige" aria-hidden="true"></span>
+              <span>Beige</span>
+            </div>
+            <div class="color-chip">
+              <span class="color-dot dot-gold" aria-hidden="true"></span>
+              <span>Dorado</span>
+            </div>
+          </div>
+
+          <p class="dresscode-subnote">Reservados especialmente para la quinceañera</p>
+        </div>
+      </section>
+
+      <!-- =======================================================
            6. CLOSING — ¡APARTA LA FECHA! & SAVE TO CALENDAR
            ======================================================= -->
       <section class="closing-section" id="aparta-la-fecha">
-        <img src="assets/floral-corner.png?v=5" alt="" class="floral-corner floral-tl closing-floral-tl" aria-hidden="true" />
-        <img src="assets/floral-corner.png?v=5" alt="" class="floral-corner floral-br closing-floral-br" aria-hidden="true" />
+        <div class="floral-center-wrap reveal" aria-hidden="true">
+          <img src="assets/floral-center.png?v=6" alt="" class="floral-centerpiece floral-center-lg" />
+        </div>
 
-        <div class="closing-card reveal">
+        <div class="closing-card reveal" data-delay="100">
           <p class="closing-script gold-shimmer">¡Aparta la fecha!</p>
 
           <div class="heart-divider heart-divider-sm" aria-hidden="true">
@@ -576,7 +675,7 @@
 
           <div class="closing-actions">
             <button class="gold-btn gold-btn-primary" id="saveCalendarBtn" type="button">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="3" y="4" width="18" height="18" rx="2.5"></rect>
                 <line x1="16" y1="2" x2="16" y2="6"></line>
                 <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -592,7 +691,7 @@
           </div>
         </div>
 
-        <footer class="invitation-footer reveal" data-delay="120">
+        <footer class="invitation-footer reveal" data-delay="140">
           <p class="footer-monogram">D · A</p>
           <p class="footer-caption">Mis XV años · 2026</p>
         </footer>
@@ -603,6 +702,6 @@
   <!-- Subtle Toast Notification -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>

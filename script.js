@@ -1,6 +1,6 @@
 /* ==========================================================================
    DANIELA AYLEN — MIS XV AÑOS
-   Interactive Effects, Particle Engine, Live Countdown & Ambient Waltz
+   Fluttering Butterflies Canvas, Manual Music Player, Countdown & Interactions
    ========================================================================== */
 
 (() => {
@@ -25,26 +25,60 @@
   }
 
   /* ------------------------------------------------------------------------
-     2. BACKGROUND SONG PLAYER (assets/cancion.mp3 WITH SMOOTH FADE-IN)
+     2. INTERACTIVE MUSIC PLAYER (MANUAL PLAY ONLY — NO AUTOPLAY)
      ------------------------------------------------------------------------ */
   const bgMusic = document.getElementById('bgMusic');
   const musicToggleBtn = document.getElementById('musicToggle');
+  const playerPlayBtn = document.getElementById('playerPlayBtn');
+  const playerSeek = document.getElementById('playerSeek');
+  const playerCurrentTime = document.getElementById('playerCurrentTime');
+  const playerDuration = document.getElementById('playerDuration');
+  const musicPrompt = document.getElementById('musicPrompt');
   let fadeInterval = null;
+  let isSeeking = false;
 
-  function syncMusicButton(playing) {
-    if (!musicToggleBtn) return;
-    musicToggleBtn.classList.toggle('is-playing', playing);
-    musicToggleBtn.setAttribute(
-      'aria-label',
-      playing ? 'Pausar música' : 'Reproducir música'
-    );
+  function formatTime(sec) {
+    if (!Number.isFinite(sec) || sec < 0) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${String(s).padStart(2, '0')}`;
   }
 
-  function fadeInAudio(audioEl, targetVolume = 0.85, durationMs = 1400) {
+  function updateSeekVisual(pct) {
+    if (!playerSeek) return;
+    const clamped = Math.max(0, Math.min(100, pct));
+    playerSeek.value = String(clamped);
+    playerSeek.style.setProperty('--progress', `${clamped}%`);
+  }
+
+  function syncMusicUI(playing) {
+    if (musicToggleBtn) {
+      musicToggleBtn.classList.toggle('is-playing', playing);
+      musicToggleBtn.setAttribute('aria-label', playing ? 'Pausar música' : 'Reproducir música');
+    }
+    if (playerPlayBtn) {
+      playerPlayBtn.classList.toggle('is-playing', playing);
+      playerPlayBtn.setAttribute(
+        'aria-label',
+        playing ? 'Pausar See You Again' : 'Reproducir See You Again'
+      );
+    }
+    if (musicPrompt) {
+      musicPrompt.textContent = playing
+        ? 'Reproduciendo · Puedes pausarla cuando gustes'
+        : 'Dale Play para escuchar mientras lees la invitación';
+    }
+  }
+
+  function fadeInAudio(audioEl, targetVolume = 0.85, durationMs = 1100) {
     if (!audioEl) return;
     clearInterval(fadeInterval);
-    audioEl.volume = 0.05;
-    const steps = 24;
+    try {
+      audioEl.volume = 0.08;
+    } catch {
+      return;
+    }
+    const steps = 20;
     const stepTime = Math.max(25, Math.floor(durationMs / steps));
     const delta = (targetVolume - audioEl.volume) / steps;
 
@@ -61,62 +95,116 @@
     }, stepTime);
   }
 
-  function startSong(withToast = false) {
+  function startSong(withToast = true) {
     if (!bgMusic) return;
     const playPromise = bgMusic.play();
     if (playPromise && typeof playPromise.then === 'function') {
       playPromise
         .then(() => {
-          fadeInAudio(bgMusic, 0.85, 1400);
-          syncMusicButton(true);
+          fadeInAudio(bgMusic, 0.85, 1100);
+          syncMusicUI(true);
           if (withToast) showToast('♪ Reproduciendo: See You Again');
         })
         .catch(() => {
-          syncMusicButton(false);
+          syncMusicUI(false);
         });
     } else {
-      fadeInAudio(bgMusic, 0.85, 1400);
-      syncMusicButton(true);
+      fadeInAudio(bgMusic, 0.85, 1100);
+      syncMusicUI(true);
       if (withToast) showToast('♪ Reproduciendo: See You Again');
     }
   }
 
-  function pauseSong(withToast = false) {
+  function pauseSong(withToast = true) {
     if (!bgMusic) return;
     clearInterval(fadeInterval);
     bgMusic.pause();
-    syncMusicButton(false);
+    syncMusicUI(false);
     if (withToast) showToast('Música pausada');
   }
 
+  function toggleSong() {
+    if (!bgMusic || bgMusic.paused) {
+      startSong(true);
+    } else {
+      pauseSong(true);
+    }
+  }
+
   if (bgMusic) {
-    bgMusic.addEventListener('play', () => syncMusicButton(true));
-    bgMusic.addEventListener('pause', () => syncMusicButton(false));
+    bgMusic.addEventListener('loadedmetadata', () => {
+      if (playerDuration && Number.isFinite(bgMusic.duration)) {
+        playerDuration.textContent = formatTime(bgMusic.duration);
+      }
+    });
+
+    bgMusic.addEventListener('timeupdate', () => {
+      if (isSeeking || !bgMusic.duration) return;
+      const pct = (bgMusic.currentTime / bgMusic.duration) * 100;
+      updateSeekVisual(pct);
+      if (playerCurrentTime) {
+        playerCurrentTime.textContent = formatTime(bgMusic.currentTime);
+      }
+    });
+
+    bgMusic.addEventListener('play', () => syncMusicUI(true));
+    bgMusic.addEventListener('pause', () => syncMusicUI(false));
+  }
+
+  if (playerPlayBtn) {
+    playerPlayBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const rect = playerPlayBtn.getBoundingClientRect();
+      spawnButterflyBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 7);
+      toggleSong();
+    });
   }
 
   if (musicToggleBtn) {
     musicToggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (!bgMusic || bgMusic.paused) {
-        startSong(true);
-      } else {
-        pauseSong(true);
+      toggleSong();
+    });
+  }
+
+  if (playerSeek && bgMusic) {
+    playerSeek.addEventListener('input', () => {
+      isSeeking = true;
+      const pct = Number(playerSeek.value);
+      updateSeekVisual(pct);
+      if (bgMusic.duration && playerCurrentTime) {
+        playerCurrentTime.textContent = formatTime((pct / 100) * bgMusic.duration);
       }
+    });
+
+    playerSeek.addEventListener('change', () => {
+      const pct = Number(playerSeek.value);
+      if (bgMusic.duration) {
+        bgMusic.currentTime = (pct / 100) * bgMusic.duration;
+      }
+      isSeeking = false;
     });
   }
 
   /* ------------------------------------------------------------------------
-     3. FULL-SCREEN PARTICLE CANVAS (PETALS, GOLD STARDUST & TAP BURSTS)
+     3. FULL-SCREEN BUTTERFLIES & ROSE PETALS CANVAS ENGINE
      ------------------------------------------------------------------------ */
-  const canvas = document.getElementById('sparkle-canvas');
+  const canvas = document.getElementById('butterfly-canvas');
   const ctx = canvas ? canvas.getContext('2d') : null;
   let width = window.innerWidth;
   let height = window.innerHeight;
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
   const petals = [];
-  const dusts = [];
-  const bursts = [];
+  const butterflies = [];
+  const burstButterflies = [];
+
+  const BUTTERFLY_PALETTES = [
+    { upper: '#e2b969', lower: '#d09b46', stroke: '#8f622a', body: '#6e4a1f' }, // Champagne Gold
+    { upper: '#ef88ab', lower: '#dc658e', stroke: '#9f4062', body: '#733049' }, // Vivid Rose Pink
+    { upper: '#98bc9f', lower: '#6d9476', stroke: '#45694f', body: '#375440' }, // Botanical Sage
+    { upper: '#f4d99b', lower: '#e79ab6', stroke: '#9b6c38', body: '#724d24' }, // Rose-Gold Shimmer
+  ];
 
   function resizeCanvas() {
     if (!canvas || !ctx) return;
@@ -131,79 +219,136 @@
     return {
       x: Math.random() * width,
       y: randomY ? Math.random() * height : -20 - Math.random() * 60,
-      size: 5 + Math.random() * 7.5,
-      vy: 0.35 + Math.random() * 0.65,
+      size: 5 + Math.random() * 7,
+      vy: 0.34 + Math.random() * 0.58,
       vx: -0.25 + Math.random() * 0.5,
       swayPhase: Math.random() * Math.PI * 2,
       swaySpeed: 0.012 + Math.random() * 0.018,
       rotation: Math.random() * Math.PI * 2,
       rotSpeed: -0.014 + Math.random() * 0.028,
-      opacity: 0.28 + Math.random() * 0.36,
-      hueShift: Math.random() > 0.5 ? '#f5b7c8' : '#fad2de',
+      opacity: 0.32 + Math.random() * 0.34,
+      color: Math.random() > 0.45 ? '#ef8fb0' : '#f7b9ce',
     };
   }
 
-  function createDust() {
+  function createButterfly(randomPos = true) {
+    const palette = BUTTERFLY_PALETTES[Math.floor(Math.random() * BUTTERFLY_PALETTES.length)];
+    const dir = Math.random() > 0.5 ? 1 : -1;
     return {
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: 0.9 + Math.random() * 2.2,
-      vy: -0.12 - Math.random() * 0.32,
-      vx: -0.15 + Math.random() * 0.3,
-      phase: Math.random() * Math.PI * 2,
-      twinkleSpeed: 0.025 + Math.random() * 0.035,
-      isStar: Math.random() < 0.36,
+      x: randomPos ? Math.random() * width : dir > 0 ? -30 : width + 30,
+      y: randomPos ? Math.random() * height : Math.random() * height,
+      size: 7.5 + Math.random() * 7.5,
+      vx: dir * (0.35 + Math.random() * 0.65),
+      vy: -0.22 - Math.random() * 0.35,
+      wavePhase: Math.random() * Math.PI * 2,
+      waveSpeed: 0.018 + Math.random() * 0.02,
+      wingPhase: Math.random() * Math.PI * 2,
+      wingSpeed: 0.14 + Math.random() * 0.09,
+      opacity: 0.55 + Math.random() * 0.35,
+      palette,
     };
   }
 
-  function spawnSparkleBurst(x, y, count = 16) {
+  function spawnButterflyBurst(x, y, count = 8) {
     if (prefersReducedMotion) return;
     for (let i = 0; i < count; i += 1) {
-      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
-      const speed = 1.2 + Math.random() * 3.4;
-      bursts.push({
+      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.6;
+      const speed = 1.1 + Math.random() * 2.5;
+      const palette = BUTTERFLY_PALETTES[Math.floor(Math.random() * BUTTERFLY_PALETTES.length)];
+      burstButterflies.push({
         x,
         y,
         vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 0.4,
-        size: 2.2 + Math.random() * 4.2,
-        alpha: 1,
-        decay: 0.018 + Math.random() * 0.016,
-        isStar: Math.random() < 0.65,
-        color: Math.random() < 0.72 ? '#d4a656' : '#f2a9be',
+        vy: Math.sin(angle) * speed - 0.65,
+        size: 5.5 + Math.random() * 5,
+        wingPhase: Math.random() * Math.PI * 2,
+        wingSpeed: 0.22 + Math.random() * 0.1,
+        alpha: 0.95,
+        decay: 0.013 + Math.random() * 0.01,
+        palette,
       });
     }
   }
 
-  function spawnTrailSparkle(x, y) {
-    if (prefersReducedMotion || bursts.length > 90) return;
-    bursts.push({
-      x: x + (Math.random() - 0.5) * 8,
-      y: y + (Math.random() - 0.5) * 8,
-      vx: (Math.random() - 0.5) * 0.6,
-      vy: -0.4 - Math.random() * 0.6,
-      size: 1.8 + Math.random() * 2.8,
+  function spawnTrailButterfly(x, y) {
+    if (prefersReducedMotion || burstButterflies.length > 48) return;
+    const palette = BUTTERFLY_PALETTES[Math.floor(Math.random() * BUTTERFLY_PALETTES.length)];
+    burstButterflies.push({
+      x: x + (Math.random() - 0.5) * 10,
+      y: y + (Math.random() - 0.5) * 10,
+      vx: (Math.random() - 0.5) * 0.9,
+      vy: -0.55 - Math.random() * 0.75,
+      size: 4.5 + Math.random() * 3.8,
+      wingPhase: Math.random() * Math.PI * 2,
+      wingSpeed: 0.24,
       alpha: 0.85,
-      decay: 0.026,
-      isStar: Math.random() < 0.55,
-      color: Math.random() < 0.75 ? '#dfb86e' : '#f6c3d2',
+      decay: 0.02,
+      palette,
     });
   }
 
-  function drawFourPointStar(context, x, y, radius, color, alpha) {
+  function drawButterfly(context, x, y, size, angle, wingOpen, palette, alpha) {
     context.save();
     context.translate(x, y);
+    context.rotate(angle);
     context.globalAlpha = Math.max(0, alpha);
-    context.fillStyle = color;
+
+    // Wing flap compression along X axis
+    const flap = 0.24 + Math.abs(Math.cos(wingOpen)) * 0.76;
+
+    // Draw both left & right symmetrical wings
+    for (const side of [-1, 1]) {
+      context.save();
+      context.scale(side * flap, 1);
+
+      // Upper wing
+      context.fillStyle = palette.upper;
+      context.strokeStyle = palette.stroke;
+      context.lineWidth = 0.75;
+      context.beginPath();
+      context.moveTo(0, -size * 0.15);
+      context.bezierCurveTo(
+        size * 0.65, -size * 1.15,
+        size * 1.45, -size * 0.65,
+        size * 1.05, size * 0.15
+      );
+      context.quadraticCurveTo(size * 0.5, size * 0.25, 0, size * 0.05);
+      context.closePath();
+      context.fill();
+      context.stroke();
+
+      // Lower wing
+      context.fillStyle = palette.lower;
+      context.beginPath();
+      context.moveTo(0, size * 0.05);
+      context.bezierCurveTo(
+        size * 0.95, size * 0.2,
+        size * 0.85, size * 1.05,
+        size * 0.28, size * 0.88
+      );
+      context.quadraticCurveTo(size * 0.08, size * 0.65, 0, size * 0.28);
+      context.closePath();
+      context.fill();
+      context.stroke();
+
+      context.restore();
+    }
+
+    // Delicate body & antennae
+    context.fillStyle = palette.body;
     context.beginPath();
-    const inner = radius * 0.28;
-    context.moveTo(0, -radius);
-    context.quadraticCurveTo(inner, -inner, radius, 0);
-    context.quadraticCurveTo(inner, inner, 0, radius);
-    context.quadraticCurveTo(-inner, inner, -radius, 0);
-    context.quadraticCurveTo(-inner, -inner, 0, -radius);
-    context.closePath();
+    context.ellipse(0, size * 0.12, size * 0.11, size * 0.42, 0, 0, Math.PI * 2);
     context.fill();
+
+    context.strokeStyle = palette.body;
+    context.lineWidth = 0.65;
+    context.beginPath();
+    context.moveTo(-size * 0.05, -size * 0.26);
+    context.quadraticCurveTo(-size * 0.22, -size * 0.52, -size * 0.34, -size * 0.56);
+    context.moveTo(size * 0.05, -size * 0.26);
+    context.quadraticCurveTo(size * 0.22, -size * 0.52, size * 0.34, -size * 0.56);
+    context.stroke();
+
     context.restore();
   }
 
@@ -214,9 +359,9 @@
     context.globalAlpha = p.opacity;
 
     const grad = context.createLinearGradient(-p.size, -p.size, p.size, p.size);
-    grad.addColorStop(0, '#fff4f7');
-    grad.addColorStop(0.55, p.hueShift);
-    grad.addColorStop(1, '#e89eb3');
+    grad.addColorStop(0, '#fff7fa');
+    grad.addColorStop(0.55, p.color);
+    grad.addColorStop(1, '#d8668d');
 
     context.fillStyle = grad;
     context.beginPath();
@@ -232,13 +377,13 @@
     if (!canvas || !ctx || prefersReducedMotion) return;
     resizeCanvas();
 
-    const petalCount = width < 640 ? 12 : 18;
-    const dustCount = width < 640 ? 28 : 44;
+    const petalCount = width < 640 ? 10 : 15;
+    const butterflyCount = width < 640 ? 11 : 18;
 
     petals.length = 0;
-    dusts.length = 0;
+    butterflies.length = 0;
     for (let i = 0; i < petalCount; i += 1) petals.push(createPetal(true));
-    for (let i = 0; i < dustCount; i += 1) dusts.push(createDust());
+    for (let i = 0; i < butterflyCount; i += 1) butterflies.push(createButterfly(true));
 
     function render() {
       ctx.clearRect(0, 0, width, height);
@@ -261,59 +406,44 @@
         drawPetal(ctx, p);
       }
 
-      // Golden fairy dust & stars
-      for (let i = 0; i < dusts.length; i += 1) {
-        const d = dusts[i];
-        d.phase += d.twinkleSpeed;
-        d.x += d.vx;
-        d.y += d.vy;
+      // Ambient fluttering butterflies
+      for (let i = 0; i < butterflies.length; i += 1) {
+        const bf = butterflies[i];
+        bf.wavePhase += bf.waveSpeed;
+        bf.wingPhase += bf.wingSpeed;
+        const dy = bf.vy + Math.sin(bf.wavePhase) * 0.42;
+        const dx = bf.vx + Math.cos(bf.wavePhase * 0.7) * 0.25;
+        bf.x += dx;
+        bf.y += dy;
 
-        if (d.y < -15) {
-          d.y = height + 15;
-          d.x = Math.random() * width;
+        if (bf.y < -40) {
+          bf.y = height + 30;
+          bf.x = Math.random() * width;
         }
-        if (d.x < -15) d.x = width + 15;
-        if (d.x > width + 15) d.x = -15;
+        if (bf.x < -45) bf.x = width + 35;
+        if (bf.x > width + 45) bf.x = -35;
 
-        const alpha = 0.2 + ((Math.sin(d.phase) + 1) * 0.5) * 0.68;
-        if (d.isStar) {
-          drawFourPointStar(ctx, d.x, d.y, d.r * 2.5, '#d4a656', alpha);
-        } else {
-          ctx.save();
-          ctx.globalAlpha = alpha * 0.75;
-          ctx.fillStyle = '#e7c582';
-          ctx.beginPath();
-          ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.restore();
-        }
+        const heading = Math.atan2(dy, dx) + Math.PI / 2;
+        drawButterfly(ctx, bf.x, bf.y, bf.size, heading * 0.35, bf.wingPhase, bf.palette, bf.opacity);
       }
 
-      // Interactive bursts & pointer sparkles
-      for (let i = bursts.length - 1; i >= 0; i -= 1) {
-        const b = bursts[i];
+      // Interactive burst & pointer-trail butterflies
+      for (let i = burstButterflies.length - 1; i >= 0; i -= 1) {
+        const b = burstButterflies[i];
+        b.wingPhase += b.wingSpeed;
         b.x += b.vx;
         b.y += b.vy;
-        b.vx *= 0.97;
-        b.vy = b.vy * 0.97 + 0.035;
+        b.vx *= 0.985;
+        b.vy = b.vy * 0.985 - 0.015;
         b.alpha -= b.decay;
 
         if (b.alpha <= 0) {
-          bursts.splice(i, 1);
+          burstButterflies.splice(i, 1);
           continue;
         }
 
-        if (b.isStar) {
-          drawFourPointStar(ctx, b.x, b.y, b.size * 1.6, b.color, b.alpha);
-        } else {
-          ctx.save();
-          ctx.globalAlpha = b.alpha;
-          ctx.fillStyle = b.color;
-          ctx.beginPath();
-          ctx.arc(b.x, b.y, b.size * 0.65, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.restore();
-        }
+        const heading = Math.atan2(b.vy, b.vx) + Math.PI / 2;
+        drawButterfly(ctx, b.x, b.y, b.size, heading * 0.4, b.wingPhase, b.palette, b.alpha);
       }
 
       requestAnimationFrame(render);
@@ -325,26 +455,26 @@
   window.addEventListener('resize', resizeCanvas, { passive: true });
   initParticles();
 
-  // Gentle fairy-dust trail on pointer move & celebratory sparkle on tap
+  // Gentle butterfly trail on pointer move & celebratory butterflies on tap
   let lastTrailTime = 0;
   window.addEventListener(
     'pointermove',
     (e) => {
       const now = performance.now();
-      if (now - lastTrailTime > 55) {
+      if (now - lastTrailTime > 120) {
         lastTrailTime = now;
-        spawnTrailSparkle(e.clientX, e.clientY);
+        spawnTrailButterfly(e.clientX, e.clientY);
       }
     },
     { passive: true }
   );
 
   window.addEventListener('pointerdown', (e) => {
-    spawnSparkleBurst(e.clientX, e.clientY, 10);
+    spawnButterflyBurst(e.clientX, e.clientY, 5);
   });
 
   /* ------------------------------------------------------------------------
-     4. INTRO CURTAIN / ROYAL SEAL OPENING
+     4. INTRO CURTAIN / ROYAL SEAL OPENING (NO AUTOPLAY MUSIC)
      ------------------------------------------------------------------------ */
   const introOverlay = document.getElementById('introOverlay');
   const openInviteBtn = document.getElementById('openInviteBtn');
@@ -366,11 +496,11 @@
 
     if (openInviteBtn) {
       const rect = openInviteBtn.getBoundingClientRect();
-      spawnSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 34);
+      spawnButterflyBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 16);
     }
 
-    // Start the invitation song upon direct user gesture
-    startSong(false);
+    // Music does NOT autoplay here — guest chooses when to press Play
+    syncMusicUI(false);
 
     if (introOverlay) {
       introOverlay.classList.add('is-opening');
@@ -487,7 +617,7 @@
     if (el.textContent !== formatted) {
       el.textContent = formatted;
       el.classList.remove('is-ticking');
-      void el.offsetWidth; // trigger reflow for crisp tick animation
+      void el.offsetWidth;
       el.classList.add('is-ticking');
     }
   }
@@ -527,7 +657,6 @@
   const saveCalendarBtn = document.getElementById('saveCalendarBtn');
 
   function downloadCalendarEvent() {
-    // 19 Dec 2026, 15:30 - 23:30 Mexico Central Time (UTC-6 -> 21:30Z to 05:30Z next day)
     const icsLines = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
@@ -540,7 +669,7 @@
       'DTSTART:20261219T213000Z',
       'DTEND:20261220T053000Z',
       'SUMMARY:XV Años de Daniela Aylen Lara Quistiano',
-      'DESCRIPTION:Una noche especial está por llegar. ¡Te esperamos!\\nPapás: Sergio Lara Muñoz y Marlene Quistiano Lara\\nPadrinos: Geovany Lara Flores y Mariela Badillo Saucedo\\n\\nHorarios:\\n- Misa: 3:30 pm en Parroquia de Papalotla (https://maps.app.goo.gl/154zJtA4wKnbMP8MA)\\n- Recepción: 4:30 pm en Salón Oasis (https://maps.app.goo.gl/PTvKgszfCb8MqS4W7)\\n- Vals: 8:00 pm\\n- Fiesta: 9:00 pm\\n- Banda: 11:00 pm',
+      'DESCRIPTION:Hay momentos inolvidables que se atesoran en el corazón para siempre, por esa razón, quiero que celebres conmigo éste día tan especial.\\n\\nPapás: Sergio Lara Muñoz y Marlene Quistiano Lara\\nPadrinos: Geovany Lara Flores y Mariela Badillo Saucedo\\n\\nHorarios:\\n- Misa: 3:30 pm en Parroquia de Papalotla (https://maps.app.goo.gl/154zJtA4wKnbMP8MA)\\n- Recepción: 4:30 pm en Salón Oasis (https://maps.app.goo.gl/PTvKgszfCb8MqS4W7)\\n- Vals: 8:00 pm\\n- Fiesta: 9:00 pm\\n- Banda: 11:00 pm\\n\\nCódigo de vestimenta: Formal (evitar beige y dorado).',
       'LOCATION:Parroquia de Papalotla / Salón Oasis',
       'END:VEVENT',
       'END:VCALENDAR',
@@ -563,7 +692,7 @@
     saveCalendarBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const rect = saveCalendarBtn.getBoundingClientRect();
-      spawnSparkleBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 20);
+      spawnButterflyBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 10);
       downloadCalendarEvent();
     });
   }
