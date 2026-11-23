@@ -14,7 +14,7 @@
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body class="is-locked">
   <!-- Ambient Very-Light Blush & Botanical Sage Watercolor Backdrop -->
@@ -652,6 +652,87 @@
       </section>
 
       <!-- =======================================================
+           5.8. CONFIRMACIÓN DE ASISTENCIA POR WHATSAPP
+           ======================================================= -->
+      <section class="rsvp-section" id="confirmacion">
+        <div class="floral-center-wrap reveal" aria-hidden="true">
+          <img src="assets/floral-center.png?v=6" alt="" class="floral-centerpiece floral-center-md" />
+        </div>
+
+        <div class="rsvp-card reveal" data-delay="100">
+          <div class="rsvp-icon-medallion" aria-hidden="true">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+          </div>
+
+          <span class="section-kicker">Confirmación de Asistencia</span>
+          <h2 class="rsvp-title">Confirma por WhatsApp</h2>
+          <p class="rsvp-subtitle">
+            Tu confirmación nos ayudará a preparar cada detalle con mucho cariño para recibirte.
+          </p>
+
+          <form class="rsvp-form" id="rsvpForm" novalidate>
+            <div class="rsvp-field">
+              <label for="rsvpName" class="rsvp-label">Tu nombre o familia</label>
+              <input
+                type="text"
+                id="rsvpName"
+                class="rsvp-input"
+                placeholder="Ej. Familia Pérez o Ana López"
+                autocomplete="name"
+                maxlength="80"
+              />
+            </div>
+
+            <div class="rsvp-row-grid">
+              <div class="rsvp-field">
+                <span class="rsvp-label">¿Nos acompañas?</span>
+                <div class="rsvp-toggle-group" role="radiogroup" aria-label="Confirmación de asistencia">
+                  <button type="button" class="rsvp-pill is-active" data-attend="si" aria-pressed="true">
+                    Sí, asistiré
+                  </button>
+                  <button type="button" class="rsvp-pill" data-attend="no" aria-pressed="false">
+                    No podré ir
+                  </button>
+                </div>
+              </div>
+
+              <div class="rsvp-field" id="rsvpGuestsWrap">
+                <label for="rsvpGuests" class="rsvp-label">Personas</label>
+                <select id="rsvpGuests" class="rsvp-input rsvp-select">
+                  <option value="1">1 persona</option>
+                  <option value="2" selected>2 personas</option>
+                  <option value="3">3 personas</option>
+                  <option value="4">4 personas</option>
+                  <option value="5">5 personas</option>
+                  <option value="6">6 o más personas</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="rsvp-field">
+              <label for="rsvpMessage" class="rsvp-label">Mensaje para Daniela Aylen (opcional)</label>
+              <textarea
+                id="rsvpMessage"
+                class="rsvp-input rsvp-textarea"
+                rows="2"
+                placeholder="Escribe un bonito deseo..."
+                maxlength="240"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="whatsapp-btn" id="whatsappConfirmBtn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12.03 2C6.51 2 2.02 6.48 2.02 12c0 1.97.57 3.81 1.56 5.36L2 22l4.79-1.54A9.94 9.94 0 0 0 12.03 22C17.55 22 22 17.52 22 12S17.55 2 12.03 2zm5.8 14.13c-.24.68-1.42 1.3-1.97 1.38-.51.07-1.15.1-1.85-.12-.43-.14-.98-.32-1.68-.62-2.96-1.28-4.89-4.27-5.04-4.47-.15-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.29.59-.37.79-.37.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.04.91 2.19.07.15.12.32.02.52-.1.2-.15.32-.29.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.61.17.29.77 1.27 1.65 2.06 1.13 1.01 2.09 1.32 2.38 1.47.29.15.47.12.64-.07.17-.2.74-.86.93-1.15.2-.29.39-.24.66-.15.27.1 1.72.81 2.01.96.29.15.49.22.56.34.08.12.08.71-.16 1.39z"/>
+              </svg>
+              <span>Confirmar por WhatsApp</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- =======================================================
            6. CLOSING — ¡APARTA LA FECHA! & SAVE TO CALENDAR
            ======================================================= -->
       <section class="closing-section" id="aparta-la-fecha">
@@ -702,6 +783,6 @@
   <!-- Subtle Toast Notification -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>

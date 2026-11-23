@@ -696,4 +696,64 @@
       downloadCalendarEvent();
     });
   }
+
+  /* ------------------------------------------------------------------------
+     9. WHATSAPP RSVP CONFIRMATION (+52 1 272 100 8243)
+     ------------------------------------------------------------------------ */
+  const WHATSAPP_NUMBER = '5212721008243';
+  const rsvpForm = document.getElementById('rsvpForm');
+  const rsvpName = document.getElementById('rsvpName');
+  const rsvpGuests = document.getElementById('rsvpGuests');
+  const rsvpGuestsWrap = document.getElementById('rsvpGuestsWrap');
+  const rsvpMessage = document.getElementById('rsvpMessage');
+  const rsvpPills = document.querySelectorAll('.rsvp-pill');
+  const whatsappConfirmBtn = document.getElementById('whatsappConfirmBtn');
+  let attendChoice = 'si';
+
+  rsvpPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      attendChoice = pill.dataset.attend || 'si';
+      rsvpPills.forEach((btn) => {
+        const active = btn === pill;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      if (rsvpGuestsWrap) {
+        rsvpGuestsWrap.classList.toggle('is-disabled', attendChoice === 'no');
+      }
+    });
+  });
+
+  if (rsvpForm) {
+    rsvpForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = rsvpName ? rsvpName.value.trim() : '';
+      const guests = rsvpGuests ? rsvpGuests.value : '2';
+      const note = rsvpMessage ? rsvpMessage.value.trim() : '';
+
+      const lines = [];
+      if (attendChoice === 'si') {
+        lines.push('¡Hola! Confirmo con mucho gusto mi asistencia a los XV años de Daniela Aylen (19 de diciembre de 2026). 👑🦋');
+        if (name) lines.push(`Nombre / Familia: ${name}`);
+        lines.push(`Personas: ${guests === '6' ? '6 o más' : guests}`);
+      } else {
+        lines.push('¡Hola! Muchas gracias por la invitación a los XV años de Daniela Aylen, lamentablemente en esta ocasión no podré asistir. Les deseo una noche maravillosa. 🌸');
+        if (name) lines.push(`Nombre / Familia: ${name}`);
+      }
+
+      if (note) {
+        lines.push(`Mensaje: ${note}`);
+      }
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
+
+      if (whatsappConfirmBtn) {
+        const rect = whatsappConfirmBtn.getBoundingClientRect();
+        spawnButterflyBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 12);
+      }
+
+      showToast('Abriendo WhatsApp para enviar tu confirmación...');
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+  }
 })();

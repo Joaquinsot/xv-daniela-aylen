@@ -1922,6 +1922,194 @@ body:not(.is-locked) .music-fab {
 }
 
 /* ==========================================================================
+   5.8. CONFIRMACIÓN DE ASISTENCIA POR WHATSAPP
+   ========================================================================== */
+.rsvp-section {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: clamp(20px, 4.5vw, 38px) clamp(18px, 5vw, 44px);
+}
+
+.rsvp-card {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: clamp(28px, 5.5vw, 42px) clamp(20px, 5vw, 36px);
+  border-radius: 26px;
+  background: linear-gradient(160deg, rgba(255, 253, 254, 0.95), rgba(242, 248, 243, 0.88) 55%, rgba(254, 241, 246, 0.86));
+  border: 1.4px solid var(--border-gold);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.rsvp-icon-medallion {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sage-deep);
+  background: radial-gradient(circle at 30% 30%, #ffffff, #e6f4e9 65%, #fcebf2);
+  border: 1.4px solid var(--border-gold-strong);
+  box-shadow: 0 10px 24px rgba(92, 131, 103, 0.16), inset 0 0 0 4px rgba(255, 255, 255, 0.85);
+}
+
+.rsvp-title {
+  font-family: var(--font-script);
+  font-size: clamp(2.35rem, 7.8vw, 3.15rem);
+  font-weight: 400;
+  color: var(--gold-dark);
+  line-height: 1.12;
+  margin-bottom: 6px;
+}
+
+.rsvp-subtitle {
+  font-size: clamp(1.04rem, 3.4vw, 1.16rem);
+  font-style: italic;
+  color: var(--ink-secondary);
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.rsvp-row-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.95fr;
+  gap: 14px;
+  align-items: end;
+}
+
+.rsvp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rsvp-field.is-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.rsvp-label {
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  padding-left: 4px;
+}
+
+.rsvp-input {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 14px;
+  border: 1.2px solid var(--border-sage);
+  background: rgba(255, 254, 255, 0.92);
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  color: var(--ink-primary);
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.rsvp-input::placeholder {
+  color: #9ba89d;
+  font-style: italic;
+}
+
+.rsvp-input:focus {
+  border-color: var(--gold-main);
+  box-shadow: 0 0 0 3px rgba(194, 149, 78, 0.16);
+}
+
+.rsvp-textarea {
+  resize: vertical;
+  min-height: 64px;
+}
+
+.rsvp-toggle-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.rsvp-pill {
+  padding: 10px 10px;
+  border-radius: 12px;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--sage-deep);
+  background: rgba(255, 254, 255, 0.85);
+  border: 1.2px solid var(--border-sage);
+  transition: all 0.25s ease;
+}
+
+.rsvp-pill:hover {
+  border-color: var(--gold-main);
+}
+
+.rsvp-pill.is-active {
+  color: #fffdf8;
+  background: linear-gradient(135deg, var(--sage-main), var(--sage-deep));
+  border-color: var(--gold-bright);
+  box-shadow: 0 6px 16px rgba(63, 98, 73, 0.24);
+}
+
+.whatsapp-btn {
+  position: relative;
+  overflow: hidden;
+  margin-top: 6px;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fffdf9;
+  background: linear-gradient(135deg, #4b8f62 0%, #34724a 55%, #2b5f3d 100%);
+  border: 1.5px solid var(--gold-bright);
+  box-shadow: 0 12px 28px rgba(45, 102, 65, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.whatsapp-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transition: left 0.6s ease;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(45, 102, 65, 0.36);
+}
+
+.whatsapp-btn:hover::after {
+  left: 140%;
+}
+
+/* ==========================================================================
    6. CLOSING — ¡APARTA LA FECHA!
    ========================================================================== */
 .closing-section {
@@ -2094,9 +2282,10 @@ body:not(.is-locked) .music-fab {
   }
 
   .family-grid,
-  .events-grid {
+  .events-grid,
+  .rsvp-row-grid {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 16px;
   }
 
   .countdown-grid {
