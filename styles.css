@@ -4,13 +4,13 @@
    ========================================================================== */
 
 :root {
-  /* Soft pastel blush pink palette (light & luminous, clearly pink) */
-  --blush-50: #fff6f9;
-  --blush-100: #fdecf2;
-  --blush-200: #fbe0ea;
-  --blush-300: #f6cee0;
-  --blush-400: #f0bdd3;
-  --rose-vivid: #d95b84;
+  /* Delicate pastel blush pink palette (balanced: soft pink, not too bright) */
+  --blush-50: #fff8fa;
+  --blush-100: #fef0f5;
+  --blush-200: #fce6ee;
+  --blush-300: #f8d7e4;
+  --blush-400: #f3c6d8;
+  --rose-vivid: #d4688b;
 
   /* Botanical Sage & Eucalyptus Green (harmonizes with light pink & gold) */
   --sage-pale: #edf5ee;
@@ -65,7 +65,7 @@ html {
 body {
   font-family: var(--font-serif);
   color: var(--ink-primary);
-  background: linear-gradient(165deg, #fdeef4 0%, #fce1ec 46%, #f5ecee 78%, #fce7f0 100%);
+  background: linear-gradient(165deg, #fef2f6 0%, #fce8f0 46%, #f6f0f2 78%, #fdedf3 100%);
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
@@ -103,18 +103,18 @@ button {
   pointer-events: none;
   overflow: hidden;
   background:
-    radial-gradient(circle at 14% 16%, rgba(248, 198, 218, 0.68) 0%, transparent 48%),
-    radial-gradient(circle at 86% 22%, rgba(196, 224, 202, 0.42) 0%, transparent 45%),
-    radial-gradient(circle at 16% 76%, rgba(198, 225, 204, 0.38) 0%, transparent 46%),
-    radial-gradient(circle at 85% 84%, rgba(248, 196, 216, 0.64) 0%, transparent 48%),
-    linear-gradient(180deg, #fdefF4 0%, #fce2ec 50%, #f9e8ef 100%);
+    radial-gradient(circle at 14% 16%, rgba(249, 210, 226, 0.56) 0%, transparent 48%),
+    radial-gradient(circle at 86% 22%, rgba(198, 224, 204, 0.38) 0%, transparent 45%),
+    radial-gradient(circle at 16% 76%, rgba(200, 226, 206, 0.36) 0%, transparent 46%),
+    radial-gradient(circle at 85% 84%, rgba(249, 208, 224, 0.52) 0%, transparent 48%),
+    linear-gradient(180deg, #fef3f7 0%, #fce9f0 50%, #fbf0f4 100%);
 }
 
 .wc-blob {
   position: absolute;
   border-radius: 50%;
   filter: blur(60px);
-  opacity: 0.56;
+  opacity: 0.48;
   will-change: transform;
 }
 
@@ -123,7 +123,7 @@ button {
   height: 55vmax;
   top: -15vmax;
   left: -12vmax;
-  background: radial-gradient(circle, rgba(247, 192, 214, 0.72), rgba(253, 232, 240, 0));
+  background: radial-gradient(circle, rgba(248, 204, 222, 0.62), rgba(253, 236, 243, 0));
   animation: blobDrift 18s ease-in-out infinite alternate;
 }
 
@@ -132,7 +132,7 @@ button {
   height: 48vmax;
   top: 22vh;
   right: -14vmax;
-  background: radial-gradient(circle, rgba(182, 216, 190, 0.48), rgba(246, 251, 247, 0));
+  background: radial-gradient(circle, rgba(186, 218, 194, 0.44), rgba(246, 251, 247, 0));
   animation: blobDrift 22s ease-in-out infinite alternate-reverse;
 }
 
@@ -141,7 +141,7 @@ button {
   height: 52vmax;
   bottom: -14vmax;
   left: -10vmax;
-  background: radial-gradient(circle, rgba(248, 198, 218, 0.58), rgba(255, 240, 246, 0));
+  background: radial-gradient(circle, rgba(249, 208, 224, 0.48), rgba(255, 242, 247, 0));
   animation: blobDrift 20s ease-in-out infinite alternate;
 }
 
@@ -150,7 +150,7 @@ button {
   height: 40vmax;
   bottom: 8vh;
   right: 6vw;
-  background: radial-gradient(circle, rgba(248, 202, 220, 0.62), rgba(255, 244, 248, 0));
+  background: radial-gradient(circle, rgba(249, 212, 227, 0.52), rgba(255, 246, 249, 0));
   animation: blobDrift 16s ease-in-out infinite alternate-reverse;
 }
 
@@ -323,9 +323,9 @@ body:not(.is-locked) .music-fab {
   position: absolute;
   pointer-events: none;
   user-select: none;
-  opacity: 0.98;
+  opacity: 0.96;
   z-index: 4;
-  filter: drop-shadow(0 6px 14px rgba(112, 82, 92, 0.14));
+  filter: saturate(0.86) brightness(1.03) drop-shadow(0 6px 14px rgba(112, 82, 92, 0.12));
 }
 
 .floral-tl {
@@ -371,10 +371,10 @@ body:not(.is-locked) .music-fab {
 .floral-side {
   position: absolute;
   width: clamp(118px, 24vw, 195px);
-  opacity: 0.88;
+  opacity: 0.85;
   pointer-events: none;
   user-select: none;
-  filter: drop-shadow(0 4px 10px rgba(102, 82, 90, 0.12));
+  filter: saturate(0.86) brightness(1.03) drop-shadow(0 4px 10px rgba(102, 82, 90, 0.1));
 }
 
 .floral-side-l1 { top: 24%; left: -46px; transform: rotate(-36deg); }
@@ -400,7 +400,7 @@ body:not(.is-locked) .music-fab {
   height: auto;
   display: block;
   margin: 0 auto;
-  filter: drop-shadow(0 8px 18px rgba(126, 78, 96, 0.16));
+  filter: saturate(0.86) brightness(1.03) drop-shadow(0 8px 18px rgba(126, 78, 96, 0.14));
 }
 
 .floral-center-lg {
@@ -661,11 +661,11 @@ body:not(.is-locked) .music-fab {
 .invitation-frame {
   position: relative;
   background:
-    radial-gradient(circle at 14% 7%, rgba(249, 204, 222, 0.5), transparent 36%),
-    radial-gradient(circle at 88% 18%, rgba(196, 224, 202, 0.34), transparent 34%),
-    radial-gradient(circle at 12% 52%, rgba(198, 225, 204, 0.32), transparent 36%),
-    radial-gradient(circle at 86% 84%, rgba(249, 202, 220, 0.48), transparent 38%),
-    linear-gradient(180deg, rgba(254, 242, 247, 0.96) 0%, rgba(252, 232, 241, 0.94) 50%, rgba(251, 238, 244, 0.96) 100%);
+    radial-gradient(circle at 14% 7%, rgba(249, 214, 229, 0.46), transparent 36%),
+    radial-gradient(circle at 88% 18%, rgba(198, 224, 204, 0.32), transparent 34%),
+    radial-gradient(circle at 12% 52%, rgba(200, 226, 206, 0.3), transparent 36%),
+    radial-gradient(circle at 86% 84%, rgba(249, 212, 227, 0.44), transparent 38%),
+    linear-gradient(180deg, rgba(254, 246, 250, 0.96) 0%, rgba(252, 237, 244, 0.94) 50%, rgba(252, 242, 247, 0.96) 100%);
   border-radius: 28px;
   box-shadow: var(--shadow-soft), 0 0 0 1px rgba(255, 255, 255, 0.85) inset;
   overflow: hidden;
@@ -1013,15 +1013,14 @@ body:not(.is-locked) .music-fab {
 }
 
 .music-player-card {
-  max-width: 490px;
+  max-width: 460px;
   margin: 0 auto;
-  padding: 20px 22px 22px;
-  border-radius: 24px;
-  background: linear-gradient(155deg, rgba(255, 253, 254, 0.94), rgba(242, 248, 243, 0.88) 58%, rgba(254, 241, 246, 0.88));
-  border: 1.4px solid var(--border-gold);
-  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  padding: 18px 20px;
+  border-radius: 22px;
+  background: rgba(255, 252, 253, 0.56);
+  border: 1px solid rgba(194, 149, 78, 0.36);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .music-player-header {
@@ -1272,16 +1271,12 @@ body:not(.is-locked) .music-fab {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-/* Featured Personal Quote Card */
+/* Open Editorial Personal Quote (no heavy box) */
 .special-quote-card {
   position: relative;
-  max-width: 540px;
+  max-width: 520px;
   margin: 0 auto;
-  padding: 24px 26px 22px;
-  border-radius: 22px;
-  background: linear-gradient(160deg, rgba(255, 253, 254, 0.92), rgba(242, 248, 243, 0.82));
-  border: 1.2px solid var(--border-sage);
-  box-shadow: 0 12px 30px rgba(92, 131, 103, 0.1);
+  padding: 10px 16px;
 }
 
 .quote-mark {
@@ -1340,27 +1335,24 @@ body:not(.is-locked) .music-fab {
 .family-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-  max-width: 640px;
+  gap: 24px;
+  max-width: 620px;
   margin: 0 auto;
 }
 
 .family-card {
   position: relative;
-  padding: 26px 20px 24px;
-  border-radius: 24px;
-  background: linear-gradient(160deg, rgba(255, 253, 254, 0.92), rgba(243, 249, 244, 0.8));
-  border: 1.3px solid var(--border-gold);
-  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 14px 12px;
 }
 
-.family-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--sage-main);
-  box-shadow: 0 20px 42px rgba(92, 131, 103, 0.16);
+.family-card:first-child::after {
+  content: '';
+  position: absolute;
+  top: 18%;
+  bottom: 18%;
+  right: -12px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--border-gold), var(--border-sage), transparent);
 }
 
 .family-ornament {
@@ -1493,42 +1485,30 @@ body:not(.is-locked) .music-fab {
 .events-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
+  gap: 28px;
   max-width: 640px;
   margin: 0 auto;
 }
 
 .event-card {
   position: relative;
-  overflow: hidden;
-  border-radius: 24px;
-  padding: 32px 22px 28px;
+  padding: 16px 14px 20px;
   text-align: center;
-  background: linear-gradient(160deg, rgba(255, 253, 254, 0.94), rgba(253, 241, 246, 0.8) 55%, rgba(240, 248, 242, 0.82));
-  border: 1.4px solid var(--border-gold);
-  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
-  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
 }
 
-.event-card:hover {
-  border-color: var(--sage-main);
-  box-shadow: 0 22px 46px rgba(92, 131, 103, 0.18), 0 0 0 1px rgba(212, 175, 106, 0.24);
+.event-card:first-child::after {
+  content: '';
+  position: absolute;
+  top: 16%;
+  bottom: 16%;
+  right: -14px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--border-gold), var(--border-sage), transparent);
 }
 
 .event-card-shine {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(circle at var(--mx, 50%) var(--my, 20%), rgba(255, 252, 244, 0.62), transparent 58%);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-
-.event-card:hover .event-card-shine {
-  opacity: 1;
+  display: none;
 }
 
 .event-icon-medallion {
@@ -1739,17 +1719,17 @@ body:not(.is-locked) .music-fab {
 }
 
 .timeline-content {
-  padding: 14px 18px;
-  border-radius: 18px;
-  background: rgba(255, 253, 254, 0.88);
-  border: 1px solid var(--border-sage);
-  box-shadow: 0 10px 26px rgba(92, 131, 103, 0.1);
-  transition: transform 0.28s ease, border-color 0.28s ease;
+  padding: 8px 6px 10px 4px;
+  border-bottom: 1px solid rgba(194, 149, 78, 0.18);
+  transition: transform 0.25s ease;
+}
+
+.timeline-item:last-child .timeline-content {
+  border-bottom: none;
 }
 
 .timeline-content:hover {
   transform: translateX(4px);
-  border-color: var(--border-gold-strong);
 }
 
 .timeline-row {
@@ -1816,15 +1796,9 @@ body:not(.is-locked) .music-fab {
 }
 
 .dresscode-card {
-  max-width: 520px;
+  max-width: 500px;
   margin: 0 auto;
-  padding: clamp(28px, 5.5vw, 40px) clamp(20px, 5vw, 34px);
-  border-radius: 26px;
-  background: linear-gradient(160deg, rgba(255, 253, 254, 0.94), rgba(242, 248, 243, 0.86) 55%, rgba(254, 241, 246, 0.85));
-  border: 1.4px solid var(--border-gold);
-  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  padding: 10px 14px;
 }
 
 .dresscode-icon-medallion {
@@ -1932,15 +1906,9 @@ body:not(.is-locked) .music-fab {
 }
 
 .gifts-card {
-  max-width: 530px;
+  max-width: 510px;
   margin: 0 auto;
-  padding: clamp(28px, 5.5vw, 40px) clamp(20px, 5vw, 36px);
-  border-radius: 26px;
-  background: linear-gradient(160deg, rgba(255, 250, 252, 0.94), rgba(242, 248, 243, 0.84) 55%, rgba(253, 234, 242, 0.86));
-  border: 1.4px solid var(--border-gold);
-  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  padding: 10px 14px;
 }
 
 .gifts-icon-medallion {
@@ -1992,15 +1960,14 @@ body:not(.is-locked) .music-fab {
 }
 
 .rsvp-card {
-  max-width: 540px;
+  max-width: 510px;
   margin: 0 auto;
-  padding: clamp(28px, 5.5vw, 42px) clamp(20px, 5vw, 36px);
-  border-radius: 26px;
-  background: linear-gradient(160deg, rgba(255, 253, 254, 0.95), rgba(242, 248, 243, 0.88) 55%, rgba(254, 241, 246, 0.86));
-  border: 1.4px solid var(--border-gold);
-  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  padding: clamp(24px, 5vw, 34px) clamp(18px, 4.5vw, 30px);
+  border-radius: 24px;
+  background: rgba(255, 252, 253, 0.52);
+  border: 1px solid rgba(194, 149, 78, 0.34);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .rsvp-icon-medallion {
@@ -2183,15 +2150,9 @@ body:not(.is-locked) .music-fab {
 .closing-card {
   position: relative;
   z-index: 5;
-  max-width: 520px;
+  max-width: 510px;
   margin: 0 auto;
-  padding: clamp(30px, 6vw, 44px) clamp(20px, 5vw, 36px);
-  border-radius: 26px;
-  background: linear-gradient(160deg, rgba(255, 253, 254, 0.94), rgba(242, 248, 243, 0.86));
-  border: 1.4px solid var(--border-gold);
-  box-shadow: var(--shadow-card);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  padding: 12px 14px;
 }
 
 .closing-script {
@@ -2346,6 +2307,17 @@ body:not(.is-locked) .music-fab {
   .rsvp-row-grid {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .family-card:first-child::after,
+  .event-card:first-child::after {
+    top: auto;
+    bottom: -8px;
+    left: 22%;
+    right: 22%;
+    width: auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-gold), var(--border-sage), transparent);
   }
 
   .countdown-grid {
