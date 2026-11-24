@@ -155,7 +155,7 @@
     playerPlayBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const rect = playerPlayBtn.getBoundingClientRect();
-      spawnButterflyBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 7);
+      spawnButterflyBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 4);
       toggleSong();
     });
   }
@@ -271,18 +271,18 @@
   }
 
   function spawnTrailButterfly(x, y) {
-    if (prefersReducedMotion || burstButterflies.length > 48) return;
+    if (prefersReducedMotion || burstButterflies.length > 14) return;
     const palette = BUTTERFLY_PALETTES[Math.floor(Math.random() * BUTTERFLY_PALETTES.length)];
     burstButterflies.push({
       x: x + (Math.random() - 0.5) * 10,
       y: y + (Math.random() - 0.5) * 10,
-      vx: (Math.random() - 0.5) * 0.9,
-      vy: -0.55 - Math.random() * 0.75,
-      size: 4.5 + Math.random() * 3.8,
+      vx: (Math.random() - 0.5) * 0.8,
+      vy: -0.5 - Math.random() * 0.65,
+      size: 4.5 + Math.random() * 3.2,
       wingPhase: Math.random() * Math.PI * 2,
-      wingSpeed: 0.24,
-      alpha: 0.85,
-      decay: 0.02,
+      wingSpeed: 0.22,
+      alpha: 0.78,
+      decay: 0.022,
       palette,
     });
   }
@@ -377,8 +377,8 @@
     if (!canvas || !ctx || prefersReducedMotion) return;
     resizeCanvas();
 
-    const petalCount = width < 640 ? 10 : 15;
-    const butterflyCount = width < 640 ? 11 : 18;
+    const petalCount = width < 640 ? 8 : 12;
+    const butterflyCount = width < 640 ? 4 : 7;
 
     petals.length = 0;
     butterflies.length = 0;
@@ -455,13 +455,13 @@
   window.addEventListener('resize', resizeCanvas, { passive: true });
   initParticles();
 
-  // Gentle butterfly trail on pointer move & celebratory butterflies on tap
+  // Subtle butterfly trail on pointer move & light flutter on tap
   let lastTrailTime = 0;
   window.addEventListener(
     'pointermove',
     (e) => {
       const now = performance.now();
-      if (now - lastTrailTime > 120) {
+      if (now - lastTrailTime > 420) {
         lastTrailTime = now;
         spawnTrailButterfly(e.clientX, e.clientY);
       }
@@ -470,7 +470,7 @@
   );
 
   window.addEventListener('pointerdown', (e) => {
-    spawnButterflyBurst(e.clientX, e.clientY, 5);
+    spawnButterflyBurst(e.clientX, e.clientY, 2);
   });
 
   /* ------------------------------------------------------------------------
@@ -496,7 +496,7 @@
 
     if (openInviteBtn) {
       const rect = openInviteBtn.getBoundingClientRect();
-      spawnButterflyBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 16);
+      spawnButterflyBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 8);
     }
 
     // Music does NOT autoplay here — guest chooses when to press Play
@@ -669,7 +669,7 @@
       'DTSTART:20261219T213000Z',
       'DTEND:20261220T053000Z',
       'SUMMARY:XV Años de Daniela Aylen Lara Quistiano',
-      'DESCRIPTION:Hay momentos inolvidables que se atesoran en el corazón para siempre, por esa razón, quiero que celebres conmigo éste día tan especial.\\n\\nPapás: Sergio Lara Muñoz y Marlene Quistiano Lara\\nPadrinos: Geovany Lara Flores y Mariela Badillo Saucedo\\n\\nHorarios:\\n- Misa: 3:30 pm en Parroquia de Papalotla (https://maps.app.goo.gl/154zJtA4wKnbMP8MA)\\n- Recepción: 4:30 pm en Salón Oasis (https://maps.app.goo.gl/PTvKgszfCb8MqS4W7)\\n- Vals: 8:00 pm\\n- Fiesta: 9:00 pm\\n- Banda: 11:00 pm\\n\\nCódigo de vestimenta: Formal (evitar beige y dorado).',
+      'DESCRIPTION:Hay momentos inolvidables que se atesoran en el corazón para siempre, por esa razón, quiero que celebres conmigo éste día tan especial.\\n\\nPapás: Sergio Lara Muñoz y Marlene Quistiano Lara\\nPadrinos: Geovany Lara Flores y Mariela Badillo Saucedo\\n\\nHorarios:\\n- Misa: 3:30 pm en Parroquia de Papalotla (https://maps.app.goo.gl/154zJtA4wKnbMP8MA)\\n- Recepción: 4:00 pm en Salón Oasis (https://maps.app.goo.gl/PTvKgszfCb8MqS4W7)\\n- Vals: 8:00 pm\\n- Fiesta: 9:00 pm\\n- Banda: 11:00 pm',
       'LOCATION:Parroquia de Papalotla / Salón Oasis',
       'END:VEVENT',
       'END:VCALENDAR',
@@ -692,7 +692,7 @@
     saveCalendarBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const rect = saveCalendarBtn.getBoundingClientRect();
-      spawnButterflyBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 10);
+      spawnButterflyBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 5);
       downloadCalendarEvent();
     });
   }
@@ -749,7 +749,7 @@
 
       if (whatsappConfirmBtn) {
         const rect = whatsappConfirmBtn.getBoundingClientRect();
-        spawnButterflyBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 12);
+        spawnButterflyBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 6);
       }
 
       showToast('Abriendo WhatsApp para enviar tu confirmación...');
